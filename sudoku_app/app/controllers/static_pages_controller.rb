@@ -24,11 +24,11 @@ class StaticPagesController < ApplicationController
   ]
   end
 
-  def home
-  end
-
   def roll
     @result = answers.to_a.shuffle.first
+  end
+
+  def home
   end
 
   def help
