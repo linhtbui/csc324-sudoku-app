@@ -1,0 +1,55 @@
+<div id = "puzzle">
+<% edit_form ||= nil %>
+<% solve_form ||= nil %>
+<% create_form ||= nil %>
+<% from_hash ||= nil %>
+<%= form_for @puzzle do |f| %>
+<table id="main">
+  <% (0..8).each do |square| %>
+    <% if square % 3 == 0 %>
+      <tr>
+    <%end%>
+    <td>
+      <table id="inner">
+        <% (0..8).each do |place| %>
+          <% if place % 3 == 0 %>
+            <tr>
+          <% end %>
+              <td>
+                <% location = 9*square + place %>
+                  <% if edit_form  %>
+                      <%= f.text_field "#{square}, #{place}", value: @puzzle.send("#{square}, #{place}"), :class => "square" %>
+                  <% elsif solve_form %>
+                    <% if @puzzle.send("#{square}, #{place}")=="" %>
+                       <%= f.text_field "#{square}, #{place}", :class => "square" %>
+                    <% else %>
+                      <%= @puzzle.send("#{square}, #{place}") %>
+                    <%end %>
+                  <% elsif from_hash %>
+                    <% values = @puzzle.send(from_hash) %>
+                    <%= values["#{square}, #{place}"]%>
+                  <% else %>
+                    <%= @puzzle.send("#{square}, #{place}") %>
+                  <% end %>
+              </td>
+          <% if place % 3 == 2 %>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </td>
+    <% if square % 3 == 2 %>
+      </tr>
+    <%end%>
+  <% end %>
+</table>
+<% if solve_form %>
+  <%= f.submit("Update") %>
+<% elsif edit_form %>
+  <%= f.submit("Edit") %>
+<% elsif create_form %>
+  <%= f.submit("Create") %>
+<% end %>
+
+<% end %>
+</div>

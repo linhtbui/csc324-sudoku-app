@@ -1,0 +1,28 @@
+<h1>Puzzles</h1>
+<p class="instructions">Welcome to Sudoku-on-Rails. This program will solve a Sudoku problem for you, or allow you to solve it yourself.</p>
+<p class="instructions">Enter a new puzzle and on save the app will create a solution. Or solve a Sudoku from it's current state, or the original state</p>
+
+<table>
+<tr>
+  <td>
+    <a class="puzzle-index" href="#puzzles/new">New Puzzle</a>
+  </td>
+</tr>
+
+<% puzzles.each(function (puzzle) { %>
+  <tr class="puzzle-index group">
+    <td><a href="#puzzles/<%= puzzle.id %>">
+      Puzzle <%= puzzle.id %>
+    </a></td>
+    <td><a href="#puzzles/<%= puzzle.id %>">
+      Current
+    </a></td>
+    <td><a href="#puzzles/<%= puzzle.id %>/solution">
+      Solution
+    </a></td>
+    <td><a href="#puzzles/<%= puzzle.id %>/original">
+      Original
+    </a></td>
+  </tr>
+<% }) %>
+</table>
