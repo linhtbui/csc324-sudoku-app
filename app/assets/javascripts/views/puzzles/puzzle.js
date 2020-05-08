@@ -7,7 +7,7 @@ Sudoku.Views.Puzzle = Backbone.View.extend({
   template: JST["sudokuForm"],
 
   events: {
-    "submit .puzzle":"savePuzzle",
+    "submit .puzzle":"saveNewPuzzle",
     "click .square": "addForm",
     "blur input": "saveInput",
     "click .selectors li": "highlight",
@@ -31,7 +31,7 @@ Sudoku.Views.Puzzle = Backbone.View.extend({
     return this
   },
 
-  savePuzzle: function (event) {
+  saveNewPuzzle: function (event) {
     event.preventDefault()
     event.stopPropagation()
     this.serializePuzzleForm($(event.currentTarget))
